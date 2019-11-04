@@ -1,0 +1,14 @@
+.gallery {
+  height: calc(100% - 4 * 20px);
+  position: relative;
+
+  .pictures {
+    margin: 20px;
+  }
+
+  .webcamButton {
+      position: absolute;
+      bottom: 0;
+      right: 20px;
+  }
+}

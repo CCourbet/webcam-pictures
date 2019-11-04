@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Take a picture</h1>
+<div mat-dialog-content class="form">
+    <div *ngIf="!alert; else message">
+        <video id="video" autoplay>No webcam detected</video>
+        <button (click)="takePicture()">Capture</button>
+        <canvas onClick(width="640" height="480"></canvas>
+    </div>
+    <ng-template #message>
+        <p>{{alert}}</p>
+    </ng-template>
+</div>
+<div mat-dialog-actions>
+    <button mat-stroked-button (click)="onCancel()">Cancel</button>
+    <button *ngIf="!alert" mat-stroked-button color="primary" type="submit" (click)="addPicture()">Create</button>
+</div>
