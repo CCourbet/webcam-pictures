@@ -45,7 +45,9 @@ export class WebcamDialogComponent implements OnInit, AfterViewInit {
 
   public onCancel() {
     this.dialogRef.close();
-    this.removeWebcam();
+    if (this.video) {
+      this.removeWebcam();
+    }
   }
 
   public addPicture() {

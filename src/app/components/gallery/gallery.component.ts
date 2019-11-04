@@ -16,12 +16,12 @@ export class Picture {
 export class GalleryComponent implements OnInit {
 
   public url = "../../assets/pictures/";
+  public pictures: Array<Picture> = [];
   private picturesName = [
     "basilique",
     "rhacophorus-nigropalmatus",
     "trimeresurus-venustus"
   ];
-  public pictures: Array<Picture> = [];
 
   constructor(private dialog: MatDialog) {
     this.picturesName.forEach(picture => {
