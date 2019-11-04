@@ -2,8 +2,9 @@
   height: calc(100% - 4 * 20px);
   position: relative;
 
-  .pictures {
+  .picture {
     margin: 20px;
+    height: calc(100% - 40px);
   }
 
   .webcamButton {

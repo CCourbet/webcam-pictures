@@ -1,18 +1,27 @@
 <h1 mat-dialog-title>Take a picture</h1>
 <div mat-dialog-content class="form">
     <div *ngIf="!alert; else message">
-        <video #video autoplay width="640" height="480"></video>
-        <button (click)="takePicture()">Capture</button>
+        <mat-grid-list cols="4" rowHeight="340px">
+            <mat-grid-tile class="wrapper" [colspan]="3">
+                <video #video class="video" autoplay width="640" height="480"></video>
+                <button mat-mini-fab class="button" (click)="takePicture()">
+                    <mat-icon>add_a_photo</mat-icon>
+                </button>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <div *ngIf="capture">
+                    <img src={{capture}} height="100" />
+                </div>
+            </mat-grid-tile>
+        </mat-grid-list>
         <canvas #canvas width="640" height="480"></canvas>
-        <div *ngIf="capture">
-            <img src="capture" height="50" />
-        </div>
     </div>
     <ng-template #message>
         <p>{{alert}}</p>
     </ng-template>
 </div>
-<div mat-dialog-actions>
+<div mat-dialog-actions class="actionButtons">
     <button mat-stroked-button (click)="onCancel()">Cancel</button>
-    <button *ngIf="!alert" mat-stroked-button color="primary" type="submit" (click)="addPicture()">Create</button>
+    <button *ngIf="!alert" mat-stroked-button [disabled]="capture? 'false': 'true'" color="primary" type="submit"
+        (click)="addPicture()">Add to gallery</button>
 </div>

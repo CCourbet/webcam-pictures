@@ -3,13 +3,16 @@
 </mat-toolbar>
 
 <div class="gallery">
-    <mat-grid-list cols="4" rowHeight="300px">
+    <mat-grid-list cols="4" rowHeight="320px">
         <mat-grid-tile *ngFor="let picture of pictures">
-            <mat-card class="pictures">
-                <img mat-card-image src={{picture.url}} alt="{name}">
+            <mat-card class="picture">
+                <img mat-card-image class="pictures" src={{picture.url}} alt="{name}">
+                <mat-card-subtitle>{{picture.name}}</mat-card-subtitle>
             </mat-card>
         </mat-grid-tile>
     </mat-grid-list>
 
-    <button mat-fab class="webcamButton" (click)="openWebcamDialog()"><mat-icon>add_a_photo</mat-icon></button>
+    <button mat-fab class="webcamButton" (click)="openWebcamDialog()">
+        <mat-icon>add_a_photo</mat-icon>
+    </button>
 </div>

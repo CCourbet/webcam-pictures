@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+
 import { WebcamDialogComponent } from '../webcam-dialog/webcam-dialog.component';
 
 export class Picture {
   name: string;
   url: string;
 }
-
 
 @Component({
   selector: 'app-gallery',
@@ -33,10 +33,15 @@ export class GalleryComponent implements OnInit {
   }
 
   public openWebcamDialog(): void {
-    this.dialog.open(WebcamDialogComponent, {
-      width: '30%',
+    let dialog = this.dialog.open(WebcamDialogComponent, {
+      width: '50%',
       restoreFocus: false
     });
+    dialog.afterClosed().subscribe(result => {
+      if (result) {
+        this.pictures.push({"name": result.name, "url": result.url});
+      }
+    })
   }
 
 }

@@ -1,3 +1,29 @@
-#canvas {
+.wrapper {
+    display: table;
+    position: relative;
+    width : 640px;
+    height: 100%;
+
+    .video {
+        height: 100%;
+        width: 100%
+    }
+
+    .button {
+        position: absolute;
+        bottom: 10px;
+        right: 5px;
+    }
+}
+
+canvas {
     display: none;
+}
+
+.actionButtons {
+    justify-content: flex-end;
+
+    .desactiveButton {
+        background-color: blue;
+    }
 }

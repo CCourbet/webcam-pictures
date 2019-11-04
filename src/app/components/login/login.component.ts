@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import { AuthenticationService } from '../../services/authentication.service';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -27,16 +28,15 @@ export class LoginComponent implements OnInit {
   onSubmit(): void {
     const auth = this.authentication.value;
     if (auth.name && auth.password) {
-      this.authenticationService.login(auth.name, auth.password)
-        .subscribe(
-          (isLogin) => {
-            if (isLogin) {
-              this.router.navigateByUrl('/');
-            } else {
-              alert("Credentials not valid");
-            }
+      this.authenticationService.login(auth.name, auth.password).subscribe(
+        (isLogin) => {
+          if (isLogin) {
+            this.router.navigateByUrl('/');
+          } else {
+            alert("Credentials not valid");
           }
-        );
+        }
+      );
     }
   }
 
