@@ -1,9 +1,12 @@
 <h1 mat-dialog-title>Take a picture</h1>
 <div mat-dialog-content class="form">
     <div *ngIf="!alert; else message">
-        <video id="video" autoplay>No webcam detected</video>
+        <video #video autoplay width="640" height="480"></video>
         <button (click)="takePicture()">Capture</button>
-        <canvas onClick(width="640" height="480"></canvas>
+        <canvas #canvas width="640" height="480"></canvas>
+        <div *ngIf="capture">
+            <img src="capture" height="50" />
+        </div>
     </div>
     <ng-template #message>
         <p>{{alert}}</p>

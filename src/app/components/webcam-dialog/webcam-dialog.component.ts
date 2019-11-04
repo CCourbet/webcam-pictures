@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -6,18 +6,20 @@ import { MatDialogRef } from '@angular/material/dialog';
   templateUrl: './webcam-dialog.component.html',
   styleUrls: ['./webcam-dialog.component.scss']
 })
-export class WebcamDialogComponent implements OnInit {
+export class WebcamDialogComponent implements OnInit, AfterViewInit {
 
-  private video = document.getElementById('video');
-  private canvas = document.getElementById('canvas');
-  private snap = document.getElementById("snap");
+  @ViewChild("video", { static: true })
+  private video: ElementRef;
+
+  @ViewChild("canvas", { static: true })
+  private canvas: ElementRef;
+
   public alert = null;
-  private imageCapture;
+  public capture = null;
 
   constructor(private dialogRef: MatDialogRef<WebcamDialogComponent>) { }
 
   ngOnInit() {
-    console.log('video');
     if (navigator.mediaDevices.getUserMedia) {
       navigator.mediaDevices.getUserMedia({ video: true })
         .then(stream => {
@@ -31,9 +33,24 @@ export class WebcamDialogComponent implements OnInit {
     }
   }
 
+  ngAfterViewInit() {
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({ video: true })
+        .then(stream => {
+          this.video.nativeElement.src = window.URL.createObjectURL(stream);
+          this.video.nativeElement.play();
+        })
+        .catch(error => {
+          console.log("Something went wrong!", error);
+          this.alert = error;
+        });
+    }
+
+  }
+
   public takePicture() {
-    /*var context = this.canvas.getContext('2d');
-    context.drawImage(this.video, 0, 0, 640, 480);*/
+    var context = this.canvas.nativeElement.getContext("2d").drawImage(this.video.nativeElement, 0, 0, 640, 480);
+    this.capture = this.canvas.nativeElement.toDataURL("image/png");
   }
 
   public onCancel() {
@@ -41,7 +58,6 @@ export class WebcamDialogComponent implements OnInit {
   }
 
   public addPicture() {
-    console.log("done");
     this.dialogRef.close();
   }
 
