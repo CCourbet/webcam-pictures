@@ -1,5 +1,8 @@
 # WebcamPictures
 
+An application to take pictures with your webcam, and displayed them in a gallery.
+Developed by Camille Courbet.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.9.
 
 ## Development server

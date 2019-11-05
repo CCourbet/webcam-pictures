@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-
 import { WebcamDialogComponent } from '../webcam-dialog/webcam-dialog.component';
 
 export class Picture {
@@ -15,7 +14,7 @@ export class Picture {
 })
 export class GalleryComponent implements OnInit {
 
-  public url = "../../assets/pictures/";
+  public url = "/assets/pictures/";
   public pictures: Array<Picture> = [];
   private picturesName = [
     "basilique",
@@ -25,7 +24,7 @@ export class GalleryComponent implements OnInit {
 
   constructor(private dialog: MatDialog) {
     this.picturesName.forEach(picture => {
-      this.pictures.push({"name": picture, "url": this.url + picture + ".jpg"});      
+      this.pictures.push({ "name": picture, "url": this.url + picture + ".jpg" });
     });
   }
 
@@ -39,7 +38,7 @@ export class GalleryComponent implements OnInit {
     });
     dialog.afterClosed().subscribe(result => {
       if (result) {
-        this.pictures.push({"name": result.name, "url": result.url});
+        this.pictures.push({ "name": result.name, "url": result.url });
       }
     })
   }
