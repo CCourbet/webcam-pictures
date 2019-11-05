@@ -16,16 +16,16 @@ export class GalleryComponent implements OnInit {
 
   public url = "/assets/pictures/";
   public pictures: Array<Picture> = [];
-  private picturesName = [
+  /*private picturesName = [
     "basilique",
     "rhacophorus-nigropalmatus",
     "trimeresurus-venustus"
-  ];
+  ];*/
 
   constructor(private dialog: MatDialog) {
-    this.picturesName.forEach(picture => {
+    /*this.picturesName.forEach(picture => {
       this.pictures.push({ "name": picture, "url": this.url + picture + ".jpg" });
-    });
+    });*/
   }
 
   ngOnInit() {
